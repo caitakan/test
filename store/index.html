@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="myStore" ng-controller="storeCtrl">
+<head>
+	<title>Store</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+       	 		<span class="icon-bar"></span>
+      		</button>
+			<a class="navbar-brand" href="#">Store</a>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Catalog</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-pills nav-stacked">
+				<li class="active"><a href="#">Cras justo odio</a></li>
+				<li><a href="#">Dapibus ac facilisis in</a></li>
+				<li><a href="#">Morbi leo risus</a></li>
+				<li><a href="#">Prota ac consectetur ac</a></li>
+				<li><a href="#">Vestibulum at eros</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-9 col-md-10">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label>Search</label>
+					<input type="text" placeholder="Search by item name" ng-model="search">
+				</div>
+				<div class="form-group">
+					<label>Add item</label>
+					<input type="text" placeholder="Item Name" ng-model="newItem.name">
+					<input type="text" placeholder="Description" ng-model="newItem.description">
+					<input type="number" placeholder="Price" ng-model="newItem.price">
+					<button class="btn btn-default" type="submit" ng-click="addItem()">Add</button>
+				</div>
+			</form>
+			<div class="well" ng-repeat = "product in products | filter:search">
+				<span class="glyphicon glyphicon-remove-sign pull-right icon" ng-click="removeItem($index)"></span>
+				<h3>{{product.name}}</h3>
+				<p>{{product.description}}</p>
+				<button class="btn btn-primary position">{{product.price | currency}}</button>
+			</div>
+			<div class="well ng-hide">
+				<span class="glyphicon glyphicon-remove-sign pull-right icon" ng-click="removeItem($index)"></span>
+				<h3>{{newItem.name}}</h3>
+				<p>{{newItem.description}}</p>
+				<button class="btn btn-primary position">{{newItem.price | currency}}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/angular.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers/controller.js"></script>
+</body>
+</html>
